@@ -10,7 +10,7 @@ public class Utils {
          * @return return the number of “effective” characters this tweet corresponds with.
          */
         public static int getCount(String tweet) {
-                final TwitterTextParseResults parsingResult = TwitterTextParser.parseTweetWithoutUrlExtraction(tweet);
+                final TwitterTextParseResults parsingResult = TwitterTextParser.parseTweet(tweet);
                 return parsingResult.weightedLength;
         }
 
