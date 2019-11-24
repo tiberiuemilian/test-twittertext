@@ -1,7 +1,6 @@
 package twitter;
 
-import com.twitter.twittertext.TwitterTextParseResults;
-import com.twitter.twittertext.TwitterTextParser;
+import java.text.Normalizer;
 
 public class Utils {
 
@@ -10,8 +9,22 @@ public class Utils {
          * @return return the number of “effective” characters this tweet corresponds with.
          */
         public static int getCount(String tweet) {
-                final TwitterTextParseResults parsingResult = TwitterTextParser.parseTweetWithoutUrlExtraction(tweet);
-                return parsingResult.weightedLength;
+
+            if (tweet == null || tweet.trim().length() == 0) {
+                return 0;
+            } else {
+                String normalizedTweet = Normalizer.normalize(tweet, Normalizer.Form.NFC);
+                int tweetLength = normalizedTweet.length();
+
+                if (tweetLength == 0) {
+                    return 0;
+                } else {
+                    return tweetLength;
+                }
+
+
+            }
+
         }
 
 }
